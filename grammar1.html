@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kazakh Learning Website</title>
+  <link rel="stylesheet" href="gstyle.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/icons/Grammar.png" type="image/x-icon">
+</head>
+<body>
+  <table class="top-table">
+    <tr>
+      <th><a href="index.html"><img src="images/icons/Home.png" alt="Homepage" class="center"></a></th>
+      <th><a href="lessons.html"><img src="images/icons/Lessons.png" alt="Lessons" class="center"></a></th>
+      <th><a href="flashcards.html"><img src="images/icons/Flashcardsicon.png" alt="Flashcards" class="center"></a></th>
+      <th><a href="grammar.html"><img src="images/icons/Grammar.png" alt="Grammar" class="center"></a></th>
+      <th><a href="resources.html"><img src="images/icons/resources.png" alt="Resources" class="center"></a></th>
+    </tr>
+  </table>
+
+  <div class="content">
+    <h1>Kazakh Alphabet</h1>
+    <p>First, let’s learn how to pronounce the Kazakh alphabet.<br>
+    There are 42 letters, 33 of which are taken from the Russian alphabet.<br>
+    The most popular writing system that we will talk about during this lesson is Cyrillic script.</p>
+    
+    <audio controls>
+      <source src="audio/Alphabet.mp3" type="audio/mpeg">
+    </audio>
+
+    <a href="https://youtu.be/hsGs1mEms4I?si=kpuU9uOd58ZWxb1J"><p><br>A link to the original audio</p></a>
+    <h2>Alphabet Table</h2>
+    <table id="alphabetTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Letter</th>
+          <th>Sound</th>
+          <th>IPA</th>
+          <th>Say it like…</th>
+          <th>Example</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody id="alphabetBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const alphabetData = [
+      {id:1, letter:'А а', sound:'ah', ex:'“a” in father', ipa:'/ɑ/', example:'Ана', meaning:'mom'},
+      {id:2, letter:'Ә ә', sound:'äh', ex:'“a” in cat', ipa:'/æ/', example:'Әке', meaning:'dad'},
+      {id:3, letter:'Б б', sound:'be', ex:'“b” in boy', ipa:'/b/', example:'Бала', meaning:'kid'},
+      {id:4, letter:'В в', sound:'ve', ex:'“v” in victory ', ipa:'/v/', example:'Вокзал', meaning:'train station'},
+      {id:5, letter:'Г г', sound:'ge', ex:'“g” in go', ipa:'/ɡ/', example:'Гүл', meaning:'flower'},
+      {id:6, letter:'Ғ ғ', sound:'ğa', ex:'French r (gargle)', ipa:'/ʁ/', example:'Ағаш', meaning:'tree'},
+      {id:7, letter:'Д д', sound:'de', ex:'“d” in dog', ipa:'/d/', example:'Дос', meaning:'friend'},
+      {id:8, letter:'Е е', sound:'ye', ex:'“y” in yes', ipa:'/je/', example:'Ел', meaning:'country'},
+      {id:9, letter:'Ё ё', sound:'yo', ex:'“yo” in yoga', ipa:'/jo/', example:'Ёлка', meaning:'Christmas tree'},
+      {id:10, letter:'Ж ж', sound:'zhe', ex:'“s” in pleasure', ipa:'/ʒ/', example:'Жыл', meaning:'year'},
+      {id:11, letter:'З з', sound:'ze', ex:'“z” in zoo', ipa:'/z/', example:'Зор', meaning:'huge'},
+      {id:12, letter:'И и', sound:'ee', ex:'“ee” in see', ipa:'/ɪj/', example:'Ит', meaning:'dog'},
+      {id:13, letter:'Й й', sound:'short i', ex:'“y” in yes', ipa:'/j/', example:'Ой', meaning:'thought'},
+      {id:14, letter:'К к', sound:'ka', ex:'“k” in kite', ipa:'/k/', example:'Кел', meaning:'come'},
+      {id:15, letter:'Қ қ', sound:'qa', ex:'Scottish loch (deep throat k)', ipa:'/q/', example:'Қазақ', meaning:'Kazakh'},
+      {id:16, letter:'Л л', sound:'el', ex:'“l” in love', ipa:'/l/', example:'Лала', meaning:'tulip'},
+      {id:17, letter:'М м', sound:'em', ex:'“m” in moon', ipa:'/m/', example:'Мен', meaning:'I'},
+      {id:18, letter:'Н н', sound:'en', ex:'“n” in no', ipa:'/n/', example:'Нан', meaning:'bread'},
+      {id:19, letter:'Ң ң', sound:'ñ', ex:'“ng” in sing', ipa:'/ŋ/', example:'Аң', meaning:'wild animal'},
+      {id:20, letter:'О о', sound:'o', ex:'“o” in story', ipa:'/o/', example:'От', meaning:'fire'},
+      {id:21, letter:'Ө ө', sound:'ö', ex:'French peur (round lips)', ipa:'/ø/', example:'Өмір', meaning:'life'},
+      {id:22, letter:'П п', sound:'pe', ex:'“p” in pin', ipa:'/p/', example:'Пай', meaning:'profit'},
+      {id:23, letter:'Р р', sound:'er', ex:'Spanish pero (tongue tap)', ipa:'/ɾ/', example:'Рақмет', meaning:'thanks'},
+      {id:24, letter:'С с', sound:'es', ex:'“s” in sun', ipa:'/s/', example:'Су', meaning:'water'},
+      {id:25, letter:'Т т', sound:'te', ex:'“t” in top', ipa:'/t/', example:'Тау', meaning:'mountain'},
+      {id:26, letter:'У у', sound:'w', ex:'“w” in water', ipa:'/w/', example:'Уақыт', meaning:'time'},
+      {id:27, letter:'Ұ ұ', sound:'ū', ex:'“oo” in book', ipa:'/ʊ/', example:'Ұл', meaning:'son'},
+      {id:28, letter:'Ү ү', sound:'ü', ex:'"u" in French lune', ipa:'/y/', example:'Үй', meaning:'house'},
+      {id:29, letter:'Ф ф', sound:'ef', ex:'“f” in fun', ipa:'/f/', example:'Фильм', meaning:'film'},
+      {id:30, letter:'Х х', sound:'kha', ex:'“ch” in Scottish loch', ipa:'/χ/', example:'Халық', meaning:'people'},
+      {id:31, letter:'Һ һ', sound:'h', ex:'“h” in hat', ipa:'/h/', example:'Һауа', meaning:'air'},
+      {id:32, letter:'Ц ц', sound:'tse', ex:'“ts” in tsunami', ipa:'/ts/', example:'Цирк', meaning:'circus'},
+      {id:33, letter:'Ч ч', sound:'che', ex:'“ch” in chair', ipa:'/tʃ/', example:'Чай', meaning:'tea'},
+      {id:34, letter:'Ш ш', sound:'sha', ex:'“sh” in sheep', ipa:'/ʃ/', example:'Шаш', meaning:'hair'},
+      {id:35, letter:'Щ щ', sound:'shcha', ex:'long soft sh', ipa:'/ɕː/', example:'Борщ', meaning:'borscht'},
+      {id:36, letter:'Ъ ъ', sound:'hard sign', ex:'separates syllables', ipa:'–', example:'Объект', meaning:'object'},
+      {id:37, letter:'Ы ы', sound:'y', ex:'roses (no round lips)', ipa:'/ɯ/', example:'Ыбырай', meaning:'willow'},
+      {id:38, letter:'І і', sound:'i', ex:'“i” in bit', ipa:'/ɪ/', example:'Інім', meaning:'my brother'},
+      {id:39, letter:'Ь ь', sound:'soft sign', ex:'softens previous consonant', ipa:'–', example:'Көкөніс', meaning:'vegetable'},
+      {id:40, letter:'Э э', sound:'e', ex:'“e” in bed', ipa:'/e/', example:'Экран', meaning:'screen'},
+      {id:41, letter:'Ю ю', sound:'yu', ex:'“yu” in yummy', ipa:'/jʊ/', example:'Юбка', meaning:'skirt'},
+      {id:42, letter:'Я я', sound:'ya', ex:'“ya” in yard', ipa:'/jɑ/', example:'Яғни', meaning:'that is'},
+    ];
+
+    const tbody = document.getElementById('alphabetBody');
+    alphabetData.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row.id}</td>
+        <td>${row.letter}</td>
+        <td>${row.sound}</td>
+        <td>${row.ipa}</td>
+        <td>${row.ex}</td>
+        <td>${row.example}</td>
+        <td>${row.meaning}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>

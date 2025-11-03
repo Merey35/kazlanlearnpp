@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Kazakh Learning Website</title>
+    <link rel="stylesheet" href="lstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/icons/Lessons.png" type="image/x-icon">
+</head>
+<body>
+    <table class="top-table">
+        <tr>
+            <th><a href="index.html"><img src="images/icons/Home.png" alt="Homepage" class="center"></a></th>
+            <th><a href="lessons.html"><img src="images/icons/Lessons.png" alt="Lessons" class="center"></a></th>
+            <th><a href="flashcards.html"><img src="images/icons/Flashcardsicon.png" alt="Flashcards" class="center"></a></th>
+            <th><a href="grammar.html"><img src="images/icons/Grammar.png" alt="Grammar" class="center"></a></th>
+            <th><a href="resources.html"><img src="images/icons/resources.png" alt="Resources" class="center"></a></th>
+        </tr>
+    </table>
+
+    <div class="content">
+        <h1>Әріптер мен дыбыстар (Letters and Sounds)</h1>
+        <p>Before starting the exercises, review this lesson: 
+            <a href="grammar1.html">Letters and Sounds</a> 
+        </p>
+        
+        <h2>1.</h2>
+        <p>Listen to the audio and choose the correct letter:</p>
+        <audio id="audioA" controls>
+            <source src="audio/A.mp3" type="audio/mpeg">
+        </audio>
+        <div>
+            <button onclick="checkAnswer('А')">А</button>
+            <button onclick="checkAnswer('Ә')">Ә</button>
+            <button onclick="checkAnswer('Б')">Б</button>
+        </div>
+        <p id="listenResult"></p>
+
+        <h2>2.</h2>
+        <p>Read the words and listen to the recording of yourself (microphone required):</p>
+        <p>Ана, Әке, Бала</p>
+        <button onclick="startRecording()">Start Recording</button>
+        <button onclick="stopRecording()">Stop Recording</button>
+        <audio id="recordedAudio" controls></audio>
+
+        <h2>4.</h2>
+        <p>Listen to the audio and write the right letter:</p>
+        <audio id="audioB" controls>
+            <source src="audio/Z.mp3" type="audio/mpeg">
+        </audio>
+        <input type="text" id="writingInput" placeholder="Write the letter here">
+        <button onclick="checkWriting()">Check</button>
+        <p id="writingResult"></p>
+    </div>
+
+    <script>
+        function checkAnswer(letter) {
+            const correct = 'А';
+            const result = document.getElementById('listenResult');
+            if(letter === correct) {
+                result.textContent = 'Дұрыс!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = 'Қате, қайта көріңіз.';
+                result.style.color = 'red';
+            }
+        }
+
+        function checkWriting() {
+            const input = document.getElementById('writingInput').value.trim();
+            const correct = 'З';
+            const result = document.getElementById('writingResult');
+            if(input === correct) {
+                result.textContent = 'Дұрыс!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = 'Қате, қайта көріңіз.';
+                result.style.color = 'red';
+            }
+        }
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        async function startRecording() {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+            audioChunks = [];
+
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                const audioBlob = new Blob(audioChunks);
+                const audioUrl = URL.createObjectURL(audioBlob);
+                document.getElementById('recordedAudio').src = audioUrl;
+            });
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+        }
+    </script>
+</body>
+</html>

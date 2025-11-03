@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Kazakh Learning Website</title>
+    <link rel="stylesheet" href="resourcesstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/icons/Resources.png" type="image/x-icon">
+</head>
+<body>
+    <table class="top-table">
+    <tr>
+        <th><a href="index.html"><img src="images/icons/Home.png" alt="Homepage" class="center"></a></th>
+        <th><a href="lessons.html"><img src="images/icons/Lessons.png" alt="Lessons" class="center"></a></th>
+        <th><a href="flashcards.html"><img src="images/icons/Flashcardsicon.png" alt="Flashcards" class="center"></a></th>
+        <th><a href="grammar.html"><img src="images/icons/Grammar.png" alt="Grammar" class="center"></a></th>
+    </tr>
+    </table>
+    <div class="content">
+        <div class="filter">
+            <label for="category">Choose a category:</label>
+            <select id="category" onchange="filterResources()">
+                <option value="all">All</option>
+                <option value="books">Books</option>
+                <option value="podcasts">Podcasts</option>
+                <option value="videos">Videos</option>
+                <option value="movies">Movies</option>
+                <option value="articles">Articles</option>
+            </select>
+        </div>
+
+        <div id="resources-container" class="resources-container"></div>
+    </div>
+
+  <script src="resources.js"></script>
+</body>
+</html>

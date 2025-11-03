@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Kazakh Learning Website</title>
+    <link rel="stylesheet" href="lessonsstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/icons/Lessons.png" type="image/x-icon">
+</head>
+<body>
+    <table class="top-table">
+    <tr>
+        <th><a href="index.html"><img src="images/icons/Home.png" alt="Homepage" class="center"></a></th>
+        <th><a href="flashcards.html"><img src="images/icons/Flashcardsicon.png" alt="Flashcards" class="center"></a></th>
+        <th><a href="grammar.html"><img src="images/icons/Grammar.png" alt="Grammar" class="center"></a></th>
+        <th><a href="resources.html"><img src="images/icons/resources.png" alt="Resources" class="center"></a></th>
+    </tr>
+    </table>
+    <div class="content">
+        <main class="page">
+
+            <section class="path-container">
+                <a class="lesson-circle" href="l1.html"><span class="num">1</span><span class="kztit">Әріптер мен дыбыстар</span><span class="title">Letters &amp; Sounds</span></a>
+                <a class="lesson-circle right" href="l2.html"><span class="num">2</span><span class="kztit">Сәлем! Сенің атың кім?</span><span class="title">Hello! What's your name?</span></a>
+                <a class="lesson-circle" href="l3.html"><span class="num">3</span><span class="kztit">Адамдар мен отбасы</span><span class="title">People &amp; Family</span></a>
+                <a class="lesson-circle right" href="l4.html"><span class="num">4</span><span class="kztit">Бұл не?</span><span class="title">What is this?</span></a>
+                <a class="lesson-circle" href="l5.html"><span class="num">5</span><span class="kztit">Сандар</span><span class="title">Numbers</span></a>
+                <a class="lesson-circle right" href="l6.html"><span class="num">6</span><span class="kztit">Қазір не істеп жатырсың?</span><span class="title">What are you doing now?</span></a>
+                <a class="lesson-circle" href="l7.html"><span class="num">7</span><span class="kztit">Түстер</span><span class="title">Colors</span></a>
+                <a class="lesson-circle right" href="l8.html"><span class="num">8</span><span class="kztit">Көлем, салмақ пен сапа</span><span class="title">Size, Weight &amp; Quality</span></a>
+            </section>
+
+            <div class="floating-images">
+                <img class="float-img" src="images/forlessons/yurt.png" alt="Yurt" data-title="Yurt" data-desc="Киіз үй - қазақ халқының дәстүрлі баспанасы, жеңіл әрі тез жиналатын, табиғи материалдардан жасалған. Ол көшпелі өмірге бейімделген әрі ыңғайлы тұрғын үй болып саналады." data-ed="Yurt - the traditional dwelling of the Kazakh people, made from natural materials, light, and easy to assemble. It was adapted to the nomadic lifestyle and considered a comfortable home.">
+                <img class="float-img" src="images/forlessons/dombra.png" alt="Dombra" data-title="Dombra" data-desc="Домбыра - екі ішекті, қазақ халқының ұлттық музыкалық аспабы. Оның үні арқылы халық өз тарихын, қуанышы мен қайғысын жеткізген." data-ed="Dombra - a two-stringed national musical instrument of the Kazakh people. Through its sound, the people expressed their history, joy, and sorrow.">
+                <img class="float-img" src="images/forlessons/baursak.png" alt="Baursak" data-title="Baursak" data-desc="Баурсақ - майға қуырылып дайындалатын, дастарқанның сәнін келтіретін қазақтың дәстүрлі наны. Ол мейрамдар мен қонақ күту кезінде жиі ұсынылады." data-ed="Baursak - a traditional Kazakh bread fried in oil, which decorates the table. It is often served during holidays and when welcoming guests.">
+                <img class="float-img" src="images/forlessons/nauryz.png" alt="Nauryz" data-title="Nauryz" data-desc="Наурыз - көктем мен табиғаттың жаңаруын, молшылық пен бірлікті дәріптейтін қазақтың көне мейрамы. Бұл күні адамдар бір-біріне ізгі тілектер айтып, дәстүрлі тағамдар әзірлейді." data-ed="Nauryz - an ancient Kazakh holiday that celebrates spring, renewal, abundance, and unity. On this day, people exchange good wishes and prepare traditional dishes.">
+                <img class="float-img" src="images/forlessons/chapan.png" alt="Chapan" data-title="Chapan" data-desc="Шапан - қазақтың ұлттық киімі, әдетте үлкен кісілерге немесе қадірлі адамдарға сыйлық ретінде беріледі. Ол құрмет пен жылы лебіздің белгісі саналады." data-ed="Chapan - a traditional Kazakh garment usually given as a gift to elders or respected people. It symbolizes honor and warm respect.">
+                <img class="float-img" src="images/forlessons/karazhorga.png" alt="Kara Jorga" data-title="Kara Jorga" data-desc="«Қара жорға» - жылқының жүрісін бейнелейтін, шабандоздың ептілігін көрсететін қазақтың халық биі мен күйі." data-ed="Kara Zhorga - a Kazakh folk dance and kui that depicts the movements of a horse and shows the rider’s skill and grace.">
+            </div>
+
+            <div id="popup" class="popup hidden">
+                <h3 id="popup-title"></h3>
+                <p id="popup-text"></p>
+            </div>
+        </main>
+    </div>
+
+    <script src="lessonsscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Қазір не істеп жатырсың?</title>
+    <link rel="stylesheet" href="lstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/icons/Lessons.png" type="image/x-icon">
+</head>
+<body>
+    <table class="top-table">
+        <tr>
+            <th><a href="index.html"><img src="images/icons/Home.png" alt="Homepage" class="center"></a></th>
+            <th><a href="lessons.html"><img src="images/icons/Lessons.png" alt="Lessons" class="center"></a></th>
+            <th><a href="flashcards.html"><img src="images/icons/Flashcardsicon.png" alt="Flashcards" class="center"></a></th>
+            <th><a href="grammar.html"><img src="images/icons/Grammar.png" alt="Grammar" class="center"></a></th>
+            <th><a href="resources.html"><img src="images/icons/resources.png" alt="Resources" class="center"></a></th>
+        </tr>
+    </table>
+
+    <div class="content">
+        <h1>Қазір не істеп жатырсың? (What are you doing right now?)</h1>
+        <p>Before starting the exercises, review these lessons: 
+            <a href="flashcard5.html">What are you doing right now?</a>
+            <a href="grammar6.html">Present Tense</a> 
+        </p>
+
+        <h2>1. </h2>
+        <p>Listen to the audio and choose what the person is doing:</p>
+        <audio controls>
+            <source src="audio/playing.mp3" type="audio/mpeg">
+        </audio>
+        <div>
+            <button onclick="checkListening('wrong')">Working</button>
+            <button onclick="checkListening('correct')">Playing</button>
+            <button onclick="checkListening('wrong')">Sleeping</button>
+        </div>
+        <p id="listeningResult"></p>
+
+        <h2>2. </h2>
+        <p>Record yourself saying: "Мен қазір [activity] істеп жатырмын."</p>
+        <p>Example: Мен қазір ойнап жатырмын.</p>
+        <button onclick="startRecording()">Start Recording</button>
+        <button onclick="stopRecording()">Stop Recording</button>
+        <audio id="recordedAudio" controls></audio>
+
+        <h2>3. </h2>
+        <p>Match the Kazakh sentence to its English translation:</p>
+        <table>
+            <tr>
+                <th>Kazakh</th>
+                <th>English</th>
+            </tr>
+            <tr>
+                <td>Мен қазір тамақ ішіп жатырмын</td>
+                <td>
+                    <select>
+                        <option value="">Select</option>
+                        <option value="correct">I am eating right now</option>
+                        <option value="wrong">I am sleeping</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Сен қазір жұмыс істеп жатырсың</td>
+                <td>
+                    <select>
+                        <option value="">Select</option>
+                        <option value="correct">You are working right now</option>
+                        <option value="wrong">You are playing</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Ол қазір ұйықтап жатыр</td>
+                <td>
+                    <select>
+                        <option value="">Select</option>
+                        <option value="correct">He/She is sleeping</option>
+                        <option value="wrong">He/She is eating</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button onclick="checkReading()">Check Answers</button>
+        <p id="readingResult"></p>
+
+        <h2>4.</h2>
+        <p>Translate into Kazakh: "I am working right now"</p>
+        <input type="text" id="writingInput" placeholder="Type your answer here">
+        <button onclick="checkWriting()">Check</button>
+        <p id="writingResult"></p>
+
+    </div>
+
+    <script>
+        function checkListening(answer) {
+            const result = document.getElementById('listeningResult');
+            if(answer === 'correct') {
+                result.textContent = 'Дұрыс!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = 'Қате, қайта көріңіз.';
+                result.style.color = 'red';
+            }
+        }
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        async function startRecording() {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+            audioChunks = [];
+
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                const audioBlob = new Blob(audioChunks);
+                const audioUrl = URL.createObjectURL(audioBlob);
+                document.getElementById('recordedAudio').src = audioUrl;
+            });
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+        }
+
+        function checkReading() {
+            const selects = document.querySelectorAll('table select');
+            let correctCount = 0;
+            selects.forEach(s => {
+                if(s.value === 'correct') correctCount++;
+            });
+            const result = document.getElementById('readingResult');
+            if(correctCount === selects.length) {
+                result.textContent = 'All answers are correct!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = `You got ${correctCount} out of ${selects.length} correct. Try again!`;
+                result.style.color = 'red';
+            }
+        }
+
+        function checkWriting() {
+            const input = document.getElementById('writingInput').value.trim().toLowerCase();
+            const correct = "мен қазір жұмыс істеп жатырмын";
+            const result = document.getElementById('writingResult');
+            if(input === correct) {
+                result.textContent = "Дұрыс!";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Қате, қайта көріңіз.";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

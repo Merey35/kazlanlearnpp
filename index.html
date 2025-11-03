@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kazakh Learning Website</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/icons/Home.png" type="image/x-icon">
+</head>
+<body>
+  <table class="top-table">
+    <tr>
+      <th><a href="lessons.html"><img src="images/icons/Lessons.png" alt="Lessons" class="center"></a></th>
+      <th><a href="flashcards.html"><img src="images/icons/Flashcardsicon.png" alt="Flashcards" class="center"></a></th>
+      <th><a href="grammar.html"><img src="images/icons/Grammar.png" alt="Grammar" class="center"></a></th>
+      <th><a href="resources.html"><img src="images/icons/resources.png" alt="Resources" class="center"></a></th>
+    </tr>
+  </table>
+  <div class="content">
+    <div class="option">
+      <div class="card" id="goalCard">
+        <p>I want to learn Kazakh for <br> <span id="purposeText">...</span> <br> in <br> <span id="timeText">...</span>.</p>
+      </div>
+
+      <div class="input-group">
+        <label>What is your purpose of learning Kazakh?</label>
+        <input type="text" id="purposeInput" class="oval-input" placeholder="e.g. studying abroad">
+      </div>
+
+      <div class="input-group">
+        <label>In what time period do you want to learn Kazakh?</label>
+        <input type="text" id="timeInput" class="oval-input" placeholder="e.g. 3 months">
+      </div>
+
+      <button onclick="updateGoal()">Show My Goal</button>
+
+      <script src="script.js"></script>
+    </div>
+  </div>
+</body>
+</html>

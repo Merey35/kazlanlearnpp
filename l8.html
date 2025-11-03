@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Көлем, салмақ пен сапа</title>
+    <link rel="stylesheet" href="lstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/icons/Lessons.png" type="image/x-icon">
+</head>
+<body>
+    <table class="top-table">
+        <tr>
+            <th><a href="index.html"><img src="images/icons/Home.png" alt="Homepage" class="center"></a></th>
+            <th><a href="lessons.html"><img src="images/icons/Lessons.png" alt="Lessons" class="center"></a></th>
+            <th><a href="flashcards.html"><img src="images/icons/Flashcardsicon.png" alt="Flashcards" class="center"></a></th>
+            <th><a href="grammar.html"><img src="images/icons/Grammar.png" alt="Grammar" class="center"></a></th>
+            <th><a href="resources.html"><img src="images/icons/resources.png" alt="Resources" class="center"></a></th>
+        </tr>
+    </table>
+
+    <div class="content">
+        <h1>Көлем, салмақ пен сапа (Size, weight, and quality)</h1>
+        <p>Before starting the exercises, review these lessons: 
+            <a href="flashcard7.html">Size, weight, and quality</a>
+            <a href="grammar8.html">Comparative Adjectives</a> 
+        </p>
+
+        <h2>1.</h2>
+        <p>Listen and choose the correct Kazakh word for the audio:</p>
+        <audio controls>
+            <source src="audio/big.mp3" type="audio/mpeg">
+        </audio>
+        <div>
+            <button onclick="checkListening('correct')">Big</button>
+            <button onclick="checkListening('wrong')">Small</button>
+            <button onclick="checkListening('wrong')">Heavy</button>
+        </div>
+        <p id="listeningResult"></p>
+
+        <h2>2. </h2>
+        <p>Record yourself saying the Kazakh word for “Good”:</p>
+        <button onclick="startRecording()">Start Recording</button>
+        <button onclick="stopRecording()">Stop Recording</button>
+        <audio id="recordedAudio" controls></audio>
+
+        <h2>3.</h2>
+        <p>Match the Kazakh words to English meanings:</p>
+        <table>
+            <tr>
+                <th>Kazakh</th>
+                <th>English</th>
+            </tr>
+            <tr>
+                <td>Ауыр</td>
+                <td>
+                    <select>
+                        <option value="">Select</option>
+                        <option value="correct">Heavy</option>
+                        <option value="wrong">Light</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Жеңіл</td>
+                <td>
+                    <select>
+                        <option value="">Select</option>
+                        <option value="correct">Light</option>
+                        <option value="wrong">Heavy</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Жақсы</td>
+                <td>
+                    <select>
+                        <option value="">Select</option>
+                        <option value="correct">Good</option>
+                        <option value="wrong">Bad</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button onclick="checkReading()">Check Answers</button>
+        <p id="readingResult"></p>
+
+        <h2>4.</h2>
+        <p>Write the Kazakh word for “Small / tiny”:</p>
+        <input type="text" id="writingInput" placeholder="Type your answer here">
+        <button onclick="checkWriting()">Check</button>
+        <p id="writingResult"></p>
+
+        <h2>5.</h2>
+        <p>Use the words from this lesson to complete the sentences:</p>
+        <ol>
+            <li>My bag is _______ than yours. (Үлкенірек / Кішкентай)</li>
+            <li>This box is _______ than that one. (Ауыр / Жеңілірек)</li>
+            <li>This toy is _______ than that toy. (Жақсырақ / Жаман)</li>
+        </ol>
+        <input type="text" id="comp1" placeholder="Answer 1">
+        <input type="text" id="comp2" placeholder="Answer 2">
+        <input type="text" id="comp3" placeholder="Answer 3">
+        <button onclick="checkGrammar()">Check</button>
+        <p id="grammarResult"></p>
+
+    </div>
+
+    <script>
+        function checkListening(answer) {
+            const result = document.getElementById('listeningResult');
+            if(answer === 'correct') {
+                result.textContent = 'Дұрыс!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = 'Қате, қайта көріңіз.';
+                result.style.color = 'red';
+            }
+        }
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        async function startRecording() {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+            audioChunks = [];
+
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                const audioBlob = new Blob(audioChunks);
+                const audioUrl = URL.createObjectURL(audioBlob);
+                document.getElementById('recordedAudio').src = audioUrl;
+            });
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+        }
+
+        function checkReading() {
+            const selects = document.querySelectorAll('table select');
+            let correctCount = 0;
+            selects.forEach(s => {
+                if(s.value === 'correct') correctCount++;
+            });
+            const result = document.getElementById('readingResult');
+            if(correctCount === selects.length) {
+                result.textContent = 'All answers are correct!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = `You got ${correctCount} out of ${selects.length} correct. Try again!`;
+                result.style.color = 'red';
+            }
+        }
+
+        function checkWriting() {
+            const input = document.getElementById('writingInput').value.trim().toLowerCase();
+            const correct = "кішкентай";
+            const result = document.getElementById('writingResult');
+            if(input === correct) {
+                result.textContent = "Дұрыс!";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Қате, қайта көріңіз.";
+                result.style.color = "red";
+            }
+        }
+
+        function checkGrammar() {
+            const comp1 = document.getElementById('comp1').value.trim().toLowerCase();
+            const comp2 = document.getElementById('comp2').value.trim().toLowerCase();
+            const comp3 = document.getElementById('comp3').value.trim().toLowerCase();
+
+            let score = 0;
+            if(comp1 === 'үлкенірек') score++;
+            if(comp2 === 'жеңілірек') score++;
+            if(comp3 === 'жақсырақ') score++;
+
+            const result = document.getElementById('grammarResult');
+            if(score === 3) {
+                result.textContent = "All grammar answers are correct!";
+                result.style.color = "green";
+            } else {
+                result.textContent = `You got ${score} out of 3 correct. Try again!`;
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

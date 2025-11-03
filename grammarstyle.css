@@ -1,0 +1,103 @@
+body {
+  background-color: #fffcf2;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  font-size: larger;
+}
+
+.top-table {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #86bbd8;
+  color: #4e3822;
+  border-collapse: collapse;
+  text-align: center;
+  z-index: 1000;
+}
+
+.top-table th {
+  padding: 15px;
+  width:25%;
+  border: 3px solid #4e3822;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-table img {
+  width: 35px;
+  height: 35px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.top-table img:hover {
+  filter: brightness(1) invert(0);
+  transform: scale(1.1);
+}
+
+.content {
+  margin-top: 80px;
+  padding: 20px;
+}
+
+.card img {
+    width: 50px;
+    height: 50px;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.card {
+  background-color: #faf0ce;
+  border-radius: 20px;;
+  width: 80%;
+  max-width: 700px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border: 3px solid #99d19c;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card .text h2 {
+  margin: 0;
+  color: #4e3822;
+  font-size: 22px;
+}
+
+.card .text p {
+  margin: 5px 0 0 0;
+  color: #7e5e3f;
+  font-size: 16px;
+}
+
+.card a {
+  background-color: #f6ae2d;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card a:hover {
+  background-color: #4e3822;
+}
